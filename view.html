@@ -1,5 +1,5 @@
 <div>
-  Name: {{$ctrl.item.name}}<br>
+  Name: {{$ctrl.item.name}} Due date: {{$ctrl.item.dueDate | date: 'dd-MM-yy'}} Priority: {{$ctrl.item.priority}}<br>
   Description: {{$ctrl.item.description}}<br>
   <button ng-click="$ctrl.delete()">Delete</button>
 </div>

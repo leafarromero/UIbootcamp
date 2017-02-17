@@ -23,7 +23,7 @@ todoList.component('todoList',{
 	controller: listCtrl
 });
 
-function listCtrl($scope, $localStorage) {
+function listCtrl($localStorage) {
 
   let ctrl = this;
   let d = new Date();
@@ -73,7 +73,7 @@ todoList.component('todoView',{
 
 
 function viewCtrl() {
-  var ctrl = this;
+  let ctrl = this;
 
   ctrl.delete = function() {
     ctrl.onDelete({item: ctrl.item});
@@ -83,6 +83,24 @@ function viewCtrl() {
     ctrl.onUpdate({item: ctrl.item, prop: prop, value: value});
   };
 }
+
+todoList.component('todoAdd',{
+	templateUrl:"add.html",
+	controller: addCtrl
+});
+
+
+function addCtrl($scope, $localStorage){
+
+	let ctrl = this;
+
+	ctrl.$storage = $localStorage;
+
+	ctrl.addItem = function(){
+		console.log($scope.name)
+	};
+}
+
 
 todoList.controller('mainCtrl',
   ['$scope', '$rootScope', '$location', '$localStorage', 

@@ -1,6 +1,6 @@
 Filter by:
-<select ng-model ="status">
-	<option value="">status</option>
+<select ng-model ="progress">
+	<option value="">progress</option>
 	<option value="Todo">Todo</option>
 	<option value="Doing">Doing</option>
 	<option value="Done">Done</option>
@@ -17,7 +17,7 @@ Sort by:
 <b>Todo:</b> 
 
 <todo-view 
-ng-repeat="item in $ctrl.$storage.records | filter: {status: !!status ? status : undefined} | orderBy: !!order ? order : 'created'"
+ng-repeat="item in $ctrl.$storage.records | filter: {progress: !!progress ? progress : undefined} | orderBy: !!order ? order : 'created'"
 item="item" 
 on-delete="$ctrl.deleteItem(item)" 
 on-update="$ctrl.updateItem(item, prop, value)" >
