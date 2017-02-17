@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <title>Test page</title>
+  <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js">
+  </script>
+  <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js">
+  </script>
+  <script
+  src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js">
+  </script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body ng-app = "todoList"  ng-controller = "mainCtrl">
+  <header>
+    <a href="/">Home</a> <a href="add">Add</a>
+  </header>
+  <section ng-view></section>
+</body>
+</html>
+
+
+
+<!--
+  
+  <section>
+  Name: <input ng-model = "name"><br>
+  Year: <input ng-model = "year"><br>
+  Duration: <input ng-model = "duration"><br>
+  <button ng-click = "addTodo()">Add</button>
+  </section>
+  <a href="/">Main</a> <a href="/test">Test</a>
+-->

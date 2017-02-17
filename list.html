@@ -1,0 +1,24 @@
+Filter by:
+<select ng-model ="status">
+	<option value="">status</option>
+	<option value="Todo">Todo</option>
+	<option value="Doing">Doing</option>
+	<option value="Done">Done</option>
+</select>
+
+Sort by: 
+<select ng-model ="order">
+	<option value="">order</option>
+	<option value="priority">Priority</option>
+	<option value="dueDate">Due date</option>
+</select>
+<br>
+
+<b>Todo:</b> 
+
+<todo-view 
+ng-repeat="item in $ctrl.$storage.records | filter: {status: !!status ? status : undefined} | orderBy: !!order ? order : 'created'"
+item="item" 
+on-delete="$ctrl.deleteItem(item)" 
+on-update="$ctrl.updateItem(item, prop, value)" >
+</todo-view>
