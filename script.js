@@ -8,11 +8,7 @@ todoList.config( function($routeProvider, $locationProvider){
   })
   .when("/add", {
     template: '<todo-add></todo-add>'
-  })
-  .when("/edit", {
-    templateUrl: 'edit.html',
-    controller: 'detailCtrl'
-  })
+  });
 
   $locationProvider.html5Mode(true);
 
@@ -33,7 +29,7 @@ function listCtrl($localStorage) {
   		{
 	  		name: "todo default",
 	  		description: "Programar la lista",
-	  		status: "Doing",
+	  		progress: "Doing",
 	  		priority: 1,
 	  		dueDate: d.getTime() + 10000,
 	  		created: d.getTime() - 20000
@@ -41,7 +37,7 @@ function listCtrl($localStorage) {
   		{
 	  		name: "kinda workin",
 	  		description: "Dejar de ser tan boludo",
-	  		status: "Todo",
+	  		progress: "Todo",
 	  		priority: 2,
 	  		dueDate: d.getTime() + 30000,
 	  		created: d.getTime() - 30000
@@ -49,13 +45,24 @@ function listCtrl($localStorage) {
   		{
 	  		name: "cervezas",
 	  		description: "Birras con los pibes",
-	  		status: "Done",
+	  		progress: "Done",
 	  		priority: 0,
 	  		dueDate: d.getTime() + 20000,
 	  		created: d.getTime() - 10000
   		}
   	]
   });
+
+  ctrl.updateItem = function(item, prop, value) {
+    item[prop] = value;
+  };
+
+  ctrl.deleteItem = function(item) {
+    let idx = ctrl.$storage.records.indexOf(item);
+    if (idx >= 0) {
+      ctrl.$storage.records.splice(idx, 1);
+    }
+  };
 
 
 }
@@ -104,7 +111,7 @@ function addCtrl($scope, $localStorage, $location){
 			description:$scope.description,
 			priority: $scope.priority,
 			dueDate: $scope.dueDate,
-			status: "Todo",
+			progress: "Todo",
 			created: d.getTime()
 		};
 

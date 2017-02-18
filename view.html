@@ -1,5 +1,8 @@
 <div>
   Name: {{$ctrl.item.name}} Due date: {{$ctrl.item.dueDate | date: 'dd-MM-yy'}} Priority: {{$ctrl.item.priority}}<br>
+  Status: {{$ctrl.item.progress}}<br>
   Description: {{$ctrl.item.description}}<br>
   <button ng-click="$ctrl.delete()">Delete</button>
+  <button ng-show="$ctrl.item.progress === 'Todo'" ng-click="$ctrl.update('progress', 'Doing')">Progress!</button>
+  <button ng-show="$ctrl.item.progress === 'Doing'" ng-click="$ctrl.update('progress', 'Done')">Finish!</button>
 </div>
