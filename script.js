@@ -90,14 +90,26 @@ todoList.component('todoAdd',{
 });
 
 
-function addCtrl($scope, $localStorage){
+function addCtrl($scope, $localStorage, $location){
 
 	let ctrl = this;
 
 	ctrl.$storage = $localStorage;
 
 	ctrl.addItem = function(){
-		console.log($scope.name)
+		
+		let d = new Date();
+		let newItem = {
+			name: $scope.name,
+			description:$scope.description,
+			priority: $scope.priority,
+			dueDate: $scope.dueDate,
+			status: "Todo",
+			created: d.getTime()
+		};
+
+		ctrl.$storage.records.push(newItem);
+		$location.path("/");
 	};
 }
 

@@ -1,0 +1,14 @@
+<form name="newTodo" ng-submit="newTodo.$valid && $ctrl.addItem()">
+  Name: <input type="text" ng-model="name" required>
+  Due date: <input type="date" ng-model="dueDate" required><br>
+  Priority: <br>
+  <input type="radio" name="priority" value="4" ng-model="priority" required>Very low<br>
+  <input type="radio" name="priority" value="3" ng-model="priority" required>Low<br>
+  <input type="radio" name="priority" value="2" ng-model="priority" required>Moderate<br>
+  <input type="radio" name="priority" value="1" ng-model="priority" required>High<br>
+  <input type="radio" name="priority" value="0" ng-model="priority" required>Very High<br>
+  Description: <textarea ng-model="description"></textarea><br>
+  <input type="submit" value="Add todo" ng-disabled="newTodo.$invalid">
+</form>
+
+<!--TODO: agregar los mensajes de los campos requeridos (ironico)-->
