@@ -6,13 +6,31 @@ todoList.config( function($routeProvider, $locationProvider){
   .when("/", {
     template:"<todo-list></todo-list>"
   })
-  .when("/add", {
+  .when("/addTodo", {
     template: '<todo-add></todo-add>'
   });
 
-  $locationProvider.html5Mode(true);
-
 });
+
+todoList.directive('confirm', [function () {
+  return {
+    priority: 100,
+    restrict: 'A',
+    link: {
+      pre: function (scope, element, attrs) {
+        let msg = attrs.confirm || "Are you sure?";
+
+        element.bind('click', function (event) {
+            if (!confirm(msg)) {
+              event.stopImmediatePropagation();
+              event.preventDefault;
+            }
+        });
+      }
+    }
+  };
+}]);
+
 
 todoList.component('todoList',{
 	templateUrl: "/list.html",
@@ -53,17 +71,20 @@ function listCtrl($localStorage) {
   	]
   });
 
-  ctrl.updateItem = function(item, prop, value) {
+  ctrl.updateItem = function(item, prop, value){
     item[prop] = value;
   };
 
-  ctrl.deleteItem = function(item) {
+  ctrl.deleteItem = function(item){
     let idx = ctrl.$storage.records.indexOf(item);
     if (idx >= 0) {
       ctrl.$storage.records.splice(idx, 1);
     }
   };
 
+  ctrl.clearList = function(){
+  	ctrl.$storage.records = [];
+  }
 
 }
 
@@ -118,15 +139,5 @@ function addCtrl($scope, $localStorage, $location){
 		ctrl.$storage.records.push(newItem);
 		$location.path("/");
 	};
+
 }
-
-
-todoList.controller('mainCtrl',
-  ['$scope', '$rootScope', '$location', '$localStorage', 
-  function($scope, $rootScope, $location, $localStorage){
-
-  $location.path("/");
-
-}]);
-
-

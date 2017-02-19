@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <base href="/">
-  <title>Test page</title>
+  <title>The best Todo app Ever!</title>
   <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js">
   </script>
@@ -16,23 +15,10 @@
   <script type="text/javascript" src="script.js"></script>
 </head>
 
-<body ng-app = "todoList"  ng-controller = "mainCtrl">
+<body ng-app = "todoList">
   <header>
-    <a href="/">Home</a> <a href="add">Add</a>
+    <a href="/">Home</a> <a href="#!/addTodo">Add</a>
   </header>
   <section ng-view></section>
 </body>
 </html>
-
-
-
-<!--
-  
-  <section>
-  Name: <input ng-model = "name"><br>
-  Year: <input ng-model = "year"><br>
-  Duration: <input ng-model = "duration"><br>
-  <button ng-click = "addTodo()">Add</button>
-  </section>
-  <a href="/">Main</a> <a href="/test">Test</a>
--->

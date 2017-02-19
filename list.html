@@ -12,6 +12,8 @@ Sort by:
 	<option value="priority">Priority</option>
 	<option value="dueDate">Due date</option>
 </select>
+
+<button ng-click="$ctrl.clearList()" confirm="Are you sure you want to clear the todo list?">Clear list</button>
 <br>
 
 <b>Todo:</b> 
@@ -22,3 +24,5 @@ item="item"
 on-delete="$ctrl.deleteItem(item)" 
 on-update="$ctrl.updateItem(item, prop, value)" >
 </todo-view>
+
+<!--TODO: priority string -->
