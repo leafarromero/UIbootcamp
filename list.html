@@ -1,20 +1,21 @@
-Filter by:
+<nav>
+
 <select ng-model ="progress">
-	<option value="">progress</option>
+	<option value="">Filter by:</option>
 	<option value="Todo">Todo</option>
 	<option value="Doing">Doing</option>
 	<option value="Done">Done</option>
 </select>
 
-Sort by: 
 <select ng-model ="order">
-	<option value="">order</option>
+	<option value="">Sort by:</option>
 	<option value="priority">Priority</option>
 	<option value="dueDate">Due date</option>
 </select>
 
 <button ng-click="$ctrl.clearList()" confirm="Are you sure you want to clear the todo list?">Clear list</button>
 <br>
+</nav>
 
 <b>Todo:</b> 
 
@@ -24,5 +25,3 @@ item="item"
 on-delete="$ctrl.deleteItem(item)" 
 on-update="$ctrl.updateItem(item, prop, value)" >
 </todo-view>
-
-<!--TODO: priority string -->

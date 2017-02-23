@@ -1,0 +1,116 @@
+* {margin: 0; padding: 0; box-sizing: border-box; font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+
+header {
+  margin: 3%
+}
+
+ul {
+  overflow: hidden;
+  list-style-type: none;
+}
+
+li {
+  height: 25px;
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #aaa;
+  padding: 0 20px;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  text-decoration: none;
+  color: #ccc;
+  font: 25px/1 Helvetica, Verdana, sans-serif;
+  text-transform: uppercase;
+  -webkit-transition: all 0.5s ease;
+}
+
+li a:hover {
+  color: #666;
+}
+
+li.active a {
+  font-weight: bold;
+  color: #333;
+}
+
+
+select {
+   background: transparent;
+   border: none;
+   font-size: 13px;
+   height: 3%;
+   padding: 5px;
+   background-color: SkyBlue;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.outerBox{
+    margin: 2%;
+    box-shadow: 0 0 0 1px #a27b62;
+    background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+    box-shadow: 0 -4px 2px -2px rgba(0,0,0,0.4)
+}
+
+.Todo{
+  background-color: salmon;
+}
+
+.Doing{
+  background-color: #ffff99;
+}
+
+.Done{
+  background-color: lightgreen;
+}
+
+
+#addForm {
+    margin:2%;
+    max-width: 400px;
+    padding: 20px 12px 10px 20px;
+}
+
+#addForm input[type=text], 
+#addForm input[type=date],
+textarea, 
+select{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:2px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;  
+}
+#addForm input[type=text]:focus, 
+#addForm input[type=date]:focus,
+#addForm textarea:focus, 
+#addForm select:focus{
+    -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+
+#addForm input[type=submit]{
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+}
+#addForm input[type=submit]:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}

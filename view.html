@@ -1,8 +1,53 @@
-<div>
-  Name: {{$ctrl.item.name}} Due date: {{$ctrl.item.dueDate | date: 'dd-MM-yy'}} Priority: {{$ctrl.item.priority}}<br>
-  Status: {{$ctrl.item.progress}}<br>
-  Description: {{$ctrl.item.description}}<br>
-  <button ng-click="$ctrl.delete()">Delete</button>
-  <button ng-show="$ctrl.item.progress === 'Todo'" ng-click="$ctrl.update('progress', 'Doing')">Progress!</button>
-  <button ng-show="$ctrl.item.progress === 'Doing'" ng-click="$ctrl.update('progress', 'Done')">Finish!</button>
+<div class="outerBox" ng-click="collapse = !collapse" ng-class="$ctrl.item.progress">
+<form name="editForm">
+  Name: <span ng-show="!editMode">{{$ctrl.item.name}}</span>
+  <span ng-if="editMode"><input type="text" ng-model="$ctrl.newName"></span>
+  <br>
+
+  Due date: <span ng-show="!editMode">{{$ctrl.item.dueDate | date: 'dd-MM-yy'}}</span>
+  <span ng-if="editMode"><input type="date" name="newDate" ng-model="$ctrl.newDate" min="{{date| date:'yyyy-MM-dd'}}">
+  	<span style="color:red" ng-show="editForm.newDate.$invalid"><br>Date must be a valid date equal or later than current date</span>
+  </span>
+  <br>
+
+  Priority: <span ng-show="!editMode">{{$ctrl.priorityString($ctrl.item.priority)}}</span>
+  <span ng-if="editMode"><br>
+	  <input type="radio" value=4 ng-model="$ctrl.newPriority">Very low<br>
+	  <input type="radio" value=3 ng-model="$ctrl.newPriority">Low<br>
+	  <input type="radio" value=2 ng-model="$ctrl.newPriority">Moderate<br>
+	  <input type="radio" value=1 ng-model="$ctrl.newPriority">High<br>
+	  <input type="radio" value=0 ng-model="$ctrl.newPriority">Very High
+  </span>
+  <br>
+
+  <div ng-show="collapse || editMode">
+  	Status:
+  	<span ng-show="!editMode">{{$ctrl.item.progress}}<br></span>
+  	<span ng-if="editMode"><br>
+	  <input type="radio" value="Todo" ng-model="$ctrl.newProgress">Todo<br>
+	  <input type="radio" value="Doing" ng-model="$ctrl.newProgress">Doing<br>
+	  <input type="radio" value="Done" ng-model="$ctrl.newProgress">Done<br>
+  	</span>
+
+  	Description:
+  	<span ng-show="!editMode">{{$ctrl.item.description}}</span> 
+  	<span ng-if="editMode"><textarea ng-model="$ctrl.newDescription"></textarea></span>
+  	<br>
+
+  	<button ng-click="$ctrl.delete()">Delete</button>
+
+	<button 
+	ng-show="$ctrl.item.progress === 'Todo' && !editMode"
+	ng-click="$ctrl.update($event,'progress', 'Doing')">Progress!</button>
+
+	<button 
+	ng-show="$ctrl.item.progress === 'Doing' && !editMode"
+	ng-click="$ctrl.update($event,'progress', 'Done')">Finish!</button>
+
+	<button ng-show="!editMode" ng-click="editMode = true">Edit</button>
+	<button ng-show="editMode" ng-click="editMode=false; collapse = true">Cancel</button>
+	<button ng-show="editMode" ng-click="$ctrl.edit(); collapse = true">Save</button>
+
+  </div>
+  </form>
 </div>

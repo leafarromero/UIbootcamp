@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The best Todo app Ever!</title>
   <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js">
@@ -13,12 +14,19 @@
   src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js">
   </script>
   <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="list.js"></script>
+  <script type="text/javascript" src="view.js"></script>
+  <script type="text/javascript" src="add.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body ng-app = "todoList">
-  <header>
-    <a href="/">Home</a> <a href="#!/addTodo">Add</a>
+<body ng-app = "todoList" ng-controller="mainCtrl">
+	<header>
+  	<ul>
+  		<li ng-class="{active: isActive('/')}"><a href="/">Home</a></li>
+  		<li ng-class="{active: isActive('/addTodo')}"><a href="#!/addTodo">Add</a></li>
+  	</ul>
   </header>
-  <section ng-view></section>
+	<section ng-view></section>
 </body>
 </html>
