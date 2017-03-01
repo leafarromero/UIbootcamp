@@ -20,7 +20,7 @@
 <b>Todo:</b> 
 
 <todo-view 
-ng-repeat="item in $ctrl.$storage.records | filter: {progress: !!progress ? progress : undefined} | orderBy: !!order ? order : 'created'"
+ng-repeat="item in $ctrl.$storage.records | filter: {progress: !!progress ? progress : undefined} | orderBy: !!order ? order : undefined"
 item="item" 
 on-delete="$ctrl.deleteItem(item)" 
 on-update="$ctrl.updateItem(item, prop, value)" >

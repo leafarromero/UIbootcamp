@@ -9,7 +9,7 @@ todoList.component('todoView',{
 });
 
 //El controlador maneja updates de valores y si hay un elemento a borrar lo pasa al controlador de lista
-function viewCtrl($scope) {
+function viewCtrl($scope, dateService) {
   let ctrl = this;
   let collapse = true;
   $scope.date = new Date();
@@ -32,7 +32,7 @@ function viewCtrl($scope) {
     ctrl.item.description = ctrl.newDescription ? ctrl.newDescription : ctrl.item.description;
 
     //Chequea que la fecha pasada sea valida antes de cambiarla
-    if($scope.editForm.newDate.$valid){
+    if(dateService.checkDate(ctrl.newDate)){
       ctrl.item.dueDate = ctrl.newDate ? ctrl.newDate : ctrl.item.dueDate;
     }
     
@@ -60,5 +60,13 @@ function viewCtrl($scope) {
     }
     return res
   };
+
+  ctrl.supportDate = function(){
+    return dateService.supportDate()
+  };
+
+  ctrl.validDate = function(){
+    return dateService.checkDate(ctrl.newDate)
+  }
 
 }

@@ -32,6 +32,35 @@ todoList.directive('confirm', [function () {
   };
 }]);
 
+todoList.service('dateService', function(){
+
+  //Devuelve true si la fecha es valida
+  let checkDate = function(dateStr){
+
+    let currentDate = new Date();
+    currentDate.setHours(0,0,0,0);
+    let inputDate = new Date(dateStr);
+    inputDate.setHours(0,0,0,0);
+
+    return !isNaN(inputDate.valueOf()) && inputDate >= currentDate
+  };
+
+  let supportDate = function(){
+    let input = document.createElement('input');
+    input.setAttribute('type','date');
+
+    let notADateValue = 'not-a-date';
+    input.setAttribute('value', notADateValue); 
+
+    return (input.value !== notADateValue);
+  };
+
+  return{
+    checkDate: checkDate,
+    supportDate: supportDate
+  };
+});
+
 //El controlador mas externo solo mantiene la clase de CSS active actualizada
 todoList.controller('mainCtrl', function($scope, $location){
 

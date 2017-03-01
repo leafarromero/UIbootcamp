@@ -114,3 +114,7 @@ select{
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
 }
+
+#addForm input[type=submit].disabled{
+    background: #A9A9A9;
+}

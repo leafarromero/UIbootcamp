@@ -4,9 +4,15 @@
   <span ng-if="editMode"><input type="text" ng-model="$ctrl.newName"></span>
   <br>
 
-  Due date: <span ng-show="!editMode">{{$ctrl.item.dueDate | date: 'dd-MM-yy'}}</span>
-  <span ng-if="editMode"><input type="date" name="newDate" ng-model="$ctrl.newDate" min="{{date| date:'yyyy-MM-dd'}}">
-  	<span style="color:red" ng-show="editForm.newDate.$invalid"><br>Date must be a valid date equal or later than current date</span>
+  Due date: <span ng-show="!editMode">{{$ctrl.item.dueDate | date: 'dd-MM-yyyy'}}</span>
+
+  <span ng-if="editMode">
+  <span ng-if="$ctrl.supportDate()"><input type="date" name="newDate" ng-model="$ctrl.newDate"></span>
+  <span ng-if="!$ctrl.supportDate()"><input type="text" name="newDate" ng-model="$ctrl.newDate"
+  placeholder="MM dd yyyy"></span>
+  
+  <span style="color:red" ng-show="editForm.newDate.$dirty && !$ctrl.validDate()">
+  <br>Date must be a valid date equal or later than current date</span>
   </span>
   <br>
 
@@ -34,7 +40,7 @@
   	<span ng-if="editMode"><textarea ng-model="$ctrl.newDescription"></textarea></span>
   	<br>
 
-  	<button ng-click="$ctrl.delete()">Delete</button>
+  	<button ng-click="$ctrl.delete()" ng-show="!editMode" ng-disabled="editMode">Delete</button>
 
 	<button 
 	ng-show="$ctrl.item.progress === 'Todo' && !editMode"

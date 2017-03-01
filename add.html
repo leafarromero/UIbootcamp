@@ -1,22 +1,33 @@
 <form id="addForm" name="newTodo" ng-submit="newTodo.$valid && $ctrl.addItem()">
 
-  Name: <input type="text" name="name" ng-model="name" required>
-  <span style="color:red" ng-show="newTodo.name.$touched && newTodo.name.$invalid">Name is required</span><br>
+  Name: <input type="text" name="name" ng-model="$ctrl.name" required>
+  <span style="color:red" ng-show="newTodo.name.$touched && newTodo.name.$invalid"><br> Name is required</span><br>
   
-  Due date: <input type="date" name="dueDate" ng-model="dueDate" min="{{date | date:'yyyy-MM-dd'}}" required>
-  <span style="color:red" ng-show="newTodo.dueDate.$touched && newTodo.dueDate.$invalid">Due date must be a valid date equal or later than current date</span><br>
+  Due date:
+  <span ng-if="!$ctrl.supportDate()">
+  <input name="dueDate" type="text" ng-model="$ctrl.dueDate" placeholder="MM dd yyyy">
+  </span>
+  <span ng-if="$ctrl.supportDate()">
+  <input name="dueDate" type="date" ng-model="$ctrl.dueDate" min="{{ currentDate | date: 'yyyy-MM-dd'}}">
+  </span>
+  
+  <span style="color:red" ng-show="newTodo.dueDate.$dirty && !$ctrl.validDate()">
+  <br> Due date must be a valid date equal or later than current date</span>
+
+  <br>
+
 
   Priority: <br>
-  <input type="radio" name="priority" value=4 ng-model="priority" required>Very low<br>
-  <input type="radio" name="priority" value=3 ng-model="priority" required>Low<br>
-  <input type="radio" name="priority" value=2 ng-model="priority" required>Moderate<br>
-  <input type="radio" name="priority" value=1 ng-model="priority" required>High<br>
-  <input type="radio" name="priority" value=0 ng-model="priority" required>Very High<br>
+  <input type="radio" name="priority" value=4 ng-model="$ctrl.priority" required>Very low<br>
+  <input type="radio" name="priority" value=3 ng-model="$ctrl.priority" required>Low<br>
+  <input type="radio" name="priority" value=2 ng-model="$ctrl.priority" required>Moderate<br>
+  <input type="radio" name="priority" value=1 ng-model="$ctrl.priority" required>High<br>
+  <input type="radio" name="priority" value=0 ng-model="$ctrl.priority" required>Very High<br>
 
   Description: <br>
-  <textarea name="description" ng-model="description" required></textarea><br>
+  <textarea name="description" ng-model="$ctrl.description" required></textarea><br>
   <span style="color:red" ng-show="newTodo.description.$touched && newTodo.description.$invalid">A description is required</span><br>
 
-  <input type="submit" value="Add todo" ng-disabled="newTodo.$invalid">
+  <input type="submit" value="Add todo" ng-disabled="newTodo.$invalid" ng-class="{disabled: newTodo.$invalid}">
 
 </form>

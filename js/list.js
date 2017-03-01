@@ -18,7 +18,6 @@ function listCtrl($localStorage) {
 	  		progress: "Todo",
 	  		priority: "2",
 	  		dueDate: d.getTime() + 24 * 60 * 60 * 1000, //La fecha de mañana
-	  		created: d.getTime()
   		},
   	]
   });
