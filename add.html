@@ -5,7 +5,7 @@
   
   Due date:
   <span ng-if="!$ctrl.supportDate()">
-  <input name="dueDate" type="text" ng-model="$ctrl.dueDate" placeholder="MM dd yyyy">
+  <input name="dueDate" type="text" ng-model="$ctrl.dueDate" placeholder="MM/dd/yyyy">
   </span>
   <span ng-if="$ctrl.supportDate()">
   <input name="dueDate" type="date" ng-model="$ctrl.dueDate" min="{{ currentDate | date: 'yyyy-MM-dd'}}">
@@ -18,11 +18,12 @@
 
 
   Priority: <br>
-  <input type="radio" name="priority" value=4 ng-model="$ctrl.priority" required>Very low<br>
-  <input type="radio" name="priority" value=3 ng-model="$ctrl.priority" required>Low<br>
-  <input type="radio" name="priority" value=2 ng-model="$ctrl.priority" required>Moderate<br>
-  <input type="radio" name="priority" value=1 ng-model="$ctrl.priority" required>High<br>
-  <input type="radio" name="priority" value=0 ng-model="$ctrl.priority" required>Very High<br>
+
+  <label><input type="radio" name="priority" value=4 ng-model="$ctrl.priority" required>Very low</label><br>
+  <label><input type="radio" name="priority" value=3 ng-model="$ctrl.priority" required>Low</label><br>
+  <label><input type="radio" name="priority" value=2 ng-model="$ctrl.priority" required>Moderate</label><br>
+  <label><input type="radio" name="priority" value=1 ng-model="$ctrl.priority" required>High</label><br>
+  <label><input type="radio" name="priority" value=0 ng-model="$ctrl.priority" required>Very high</label><br>
 
   Description: <br>
   <textarea name="description" ng-model="$ctrl.description" required></textarea><br>

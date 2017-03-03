@@ -33,7 +33,7 @@ function viewCtrl($scope, dateService) {
 
     //Chequea que la fecha pasada sea valida antes de cambiarla
     if(dateService.checkDate(ctrl.newDate)){
-      ctrl.item.dueDate = ctrl.newDate ? ctrl.newDate : ctrl.item.dueDate;
+      ctrl.item.dueDate = ctrl.newDate ? new Date(ctrl.newDate).setHours(0,0,0,0) : ctrl.item.dueDate;
     }
     
     $scope.editMode = false;
